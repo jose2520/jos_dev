@@ -22,34 +22,48 @@
 
 .about-heading {
   font-size: clamp(2.5rem, 5vw, 3.8rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-weight: 800;
+  line-height: 1.25;
   color: var(--text);
   margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] .about-heading {
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .underline-animated {
   position: relative;
   display: inline-block;
+  padding-bottom: 4px;
 }
 
 .underline-animated::after {
   content: "";
   position: absolute;
-  bottom: -4px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: var(--red);
-  border-radius: 2px;
-  transform-origin: left;
-  animation: underlineDraw 2s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s forwards;
-  transform: scaleX(0);
+  height: 6px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  border-radius: 4px;
+  transform-origin: center;
+  animation: underlineDraw 2.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite alternate;
+  box-shadow: 0 0 15px var(--red-glow, rgba(255, 0, 0, 0.6));
 }
 
+
 @keyframes underlineDraw {
-  to {
+  0% {
+    transform: scaleX(0.2);
+    opacity: 0.3;
+  }
+
+  100% {
     transform: scaleX(1);
+    opacity: 1;
   }
 }
 
@@ -62,14 +76,47 @@
 
 .deco-line {
   flex: 1;
-  height: 1px;
-  background: var(--border);
-  max-width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  max-width: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.deco-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+  animation: slideDot 2s infinite ease-in-out;
+}
+
+@keyframes slideDot {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
 }
 
 .deco-icon {
   color: var(--red);
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  filter: drop-shadow(0 0 8px var(--red-glow, rgba(255, 0, 0, 0.5)));
+  animation: floatIcon 3s infinite ease-in-out;
+  will-change: transform;
 }
 
 /* Skills Chips */
@@ -82,65 +129,112 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   background: var(--red-soft);
   border: 1px solid var(--red);
   color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.3rem 0.7rem;
-  border-radius: 20px;
-  transition:
-    background 0.25s,
-    transform 0.2s;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.4rem 0.9rem;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.chip i {
+  color: inherit;
+  transition: color 0.3s;
+}
+
 
 .chip:hover {
   background: var(--red);
   color: #fff;
-  transform: translateY(-2px);
+  border-color: var(--red);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 5px 15px var(--red-glow, rgba(255, 0, 0, 0.3));
 }
+
+.chip:hover i {
+  color: #fff;
+}
+
 
 /* About Card */
 .about-card {
-  background: var(--card);
-  border: 1.5px solid var(--red);
-  border-radius: var(--radius);
-  padding: 2rem 2rem 1.5rem;
+  background: rgba(20, 20, 25, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem;
   position: relative;
-  transition: box-shadow 0.3s;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  animation: floatCard 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+[data-theme="light"] .about-card {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes floatCard {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .about-card:hover {
-  box-shadow: 0 0 40px var(--red-glow);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--red-glow, rgba(255, 0, 0, 0.15));
+  border-color: var(--red-soft, rgba(255, 0, 0, 0.3));
 }
 
 .about-card-corner {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 20px;
+  height: 20px;
   border-color: var(--red);
   border-style: solid;
+  border-radius: 4px;
+  transition: all 0.4s ease;
+}
+
+.about-card:hover .about-card-corner {
+  width: 30px;
+  height: 30px;
+  border-width: 4px;
+  filter: drop-shadow(0 0 5px var(--red-glow));
 }
 
 .tl {
-  top: -3px;
-  left: -3px;
+  top: -2px;
+  left: -2px;
   border-width: 3px 0 0 3px;
 }
+
 .tr {
-  top: -3px;
-  right: -3px;
+  top: -2px;
+  right: -2px;
   border-width: 3px 3px 0 0;
 }
+
 .bl {
-  bottom: -3px;
-  left: -3px;
+  bottom: -2px;
+  left: -2px;
   border-width: 0 0 3px 3px;
 }
+
 .br {
-  bottom: -3px;
-  right: -3px;
+  bottom: -2px;
+  right: -2px;
   border-width: 0 3px 3px 0;
 }
 
@@ -150,9 +244,23 @@
 
 .typing-label {
   font-family: var(--font-code);
-  font-size: 0.78rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   color: var(--red);
-  opacity: 0.7;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.typing-label::after {
+  content: '|';
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .about-card p {
@@ -196,23 +304,31 @@
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.binary-strip-inner {
+  display: flex;
+  width: max-content;
+  animation: scrollText 60s linear infinite;
 }
 
 .binary-strip span {
-  display: inline-block;
   font-family: var(--font-code);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--text-faint);
-  letter-spacing: 2px;
-  animation: scrollText 30s linear infinite;
+  letter-spacing: 4px;
   padding-right: 2rem;
+  white-space: nowrap;
 }
 
 @keyframes scrollText {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

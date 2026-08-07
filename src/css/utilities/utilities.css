@@ -21,13 +21,17 @@
 }
 
 .section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, var(--text), var(--red));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title i {
+  color: var(--red);
 }
 
 .section-subtitle {
@@ -169,31 +173,37 @@ section {
   margin-bottom: 1.2rem;
 }
 
-/* ── TITLE LINE WITH SHIMMER ───────────────────────────────────– */
+/* ── TITLE LINE WITH GLOWING CENTER ───────────────────────────– */
 .title-line {
-  width: 60px;
-  height: 4px;
-  background: var(--red);
-  border-radius: 2px;
-  margin: 0 auto;
+  width: 180px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+  margin: 0.5rem auto 0;
   position: relative;
-  overflow: hidden;
 }
 
-.title-line::after {
+.title-line::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-  animation: shimmer 2s infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 15px 4px var(--red-glow, rgba(255, 0, 0, 0.4));
+  animation: pulseDot 2.5s infinite alternate ease-in-out;
 }
 
-@keyframes shimmer {
+@keyframes pulseDot {
   0% {
-    transform: translateX(-100%);
+    box-shadow: 0 0 5px 1px var(--red-glow, rgba(255, 0, 0, 0.2));
+    transform: translate(-50%, -50%) scale(0.9);
   }
   100% {
-    transform: translateX(100%);
+    box-shadow: 0 0 20px 6px var(--red-glow, rgba(255, 0, 0, 0.6));
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 

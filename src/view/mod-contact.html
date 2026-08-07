@@ -26,36 +26,46 @@
 
       <!-- Contact info list -->
       <div class="contact-info" role="list">
-        <a
-          href="mailto:josedelcarmen_diaz@outlook.com"
-          class="ci-item"
-          role="listitem"
-        >
+        <a href="mailto:josedelcarmen_diaz@outlook.com" class="ci-item" role="listitem">
           <div class="ci-icon">
             <i class="fas fa-envelope" aria-hidden="true"></i>
           </div>
-          <span>josedelcarmen_diaz@outlook.com</span>
+          <div class="ci-text">
+            <span class="ci-label">Email</span>
+            <span class="ci-value">josedelcarmen_diaz@outlook.com</span>
+          </div>
         </a>
 
-        <a href="https://www.google.com/maps/place/Barranquilla,+Colombia" class="ci-item" role="listitem">
+        <a href="https://www.google.com/maps/place/Barranquilla,+Colombia" class="ci-item" target="_blank"
+          rel="noopener noreferrer" role="listitem">
           <div class="ci-icon">
             <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
           </div>
-          <span>Barranquilla, Colombia 🇨🇴</span>
+          <div class="ci-text">
+            <span class="ci-label">Ubicación</span>
+            <span class="ci-value">Barranquilla, Colombia 🇨🇴</span>
+          </div>
         </a>
 
-        <a href="https://github.com/jose2520" class="ci-item" role="listitem">
+        <a href="https://github.com/jose2520" class="ci-item" target="_blank" rel="noopener noreferrer" role="listitem">
           <div class="ci-icon">
             <i class="fab fa-github" aria-hidden="true"></i>
           </div>
-          <span>github.com/jose2520</span>
+          <div class="ci-text">
+            <span class="ci-label">GitHub</span>
+            <span class="ci-value">github.com/jose2520</span>
+          </div>
         </a>
 
-        <a href="https://www.linkedin.com/in/jose-de-carmen-d-901b39a4/" class="ci-item" role="listitem">
+        <a href="https://www.linkedin.com/in/jose-de-carmen-d-901b39a4/" class="ci-item" target="_blank"
+          rel="noopener noreferrer" role="listitem">
           <div class="ci-icon">
             <i class="fab fa-linkedin" aria-hidden="true"></i>
           </div>
-          <span>linkedin.com/in/jose-de-carmen-d-901b39a4</span>
+          <div class="ci-text">
+            <span class="ci-label">LinkedIn</span>
+            <span class="ci-value">linkedin.com/in/jose-de-carmen-d</span>
+          </div>
         </a>
       </div>
       <!-- /contact-info -->
@@ -67,47 +77,26 @@
       <form class="contact-form" id="contactForm" novalidate>
         <!-- Field: Name -->
         <div class="form-group">
+          <input type="text" id="fname" name="name" placeholder=" " autocomplete="off" required />
           <label for="fname">
             <i class="fas fa-user" aria-hidden="true"></i> Tu Nombre
           </label>
-          <input
-            type="text"
-            id="fname"
-            name="name"
-            placeholder="¿Cómo te llamas?"
-            autocomplete="off"
-            required
-          />
         </div>
 
         <!-- Field: Email -->
         <div class="form-group">
+          <input type="email" id="femail" name="reply_to" placeholder=" " autocomplete="off" required />
           <label for="femail">
             <i class="fas fa-at" aria-hidden="true"></i> Tu Email
           </label>
-          <input
-            type="email"
-            id="femail"
-            name="reply_to"
-            placeholder="tú@email.com"
-            autocomplete="off"
-            required
-          />
         </div>
 
         <!-- Field: Message -->
         <div class="form-group">
+          <textarea id="fmsg" name="message" rows="4" placeholder=" " required></textarea>
           <label for="fmsg">
-            <i class="fas fa-comment-dots" aria-hidden="true"></i> ¿Qué
-            tienes en mente?
+            <i class="fas fa-comment-dots" aria-hidden="true"></i> ¿Qué tienes en mente?
           </label>
-          <textarea
-            id="fmsg"
-            name="message"
-            rows="4"
-            placeholder="Cuéntame tu historia..."
-            required
-          ></textarea>
         </div>
 
         <!-- Field: Auto time -->
@@ -119,25 +108,19 @@
             <i class="fas fa-paper-plane" aria-hidden="true"></i> Enviar
             Mensaje
           </span>
-          <span
-            class="btn-loading"
-            style="display: none"
-            aria-live="polite"
-          >
-            <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
-            Enviando...
+          <span class="btn-loading" style="display: none" aria-live="polite">
+            <svg class="custom-loader" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle class="loader-path" cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round"></circle>
+            </svg>
+            <span class="loading-text">Enviando<span class="loading-dots"></span></span>
           </span>
         </button>
 
         <!-- Success message -->
-        <div
-          class="form-success"
-          id="formSuccess"
-          role="alert"
-          aria-live="assertive"
-        >
+        <div class="form-success" id="formSuccess" role="alert" aria-live="assertive">
           <i class="fas fa-check-circle" aria-hidden="true"></i>
-          ¡Mensaje enviado! Te responderé pronto 🚀
+          ¡Mensaje enviado! Te responderé pronto
         </div>
       </form>
       <!-- /contact-form -->
