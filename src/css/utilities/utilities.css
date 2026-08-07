@@ -86,7 +86,19 @@
 }
 
 .text-red {
+  background: linear-gradient(135deg, var(--red), #ff5555);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  filter: drop-shadow(0 2px 10px var(--red-glow, rgba(255, 0, 0, 0.3)));
+}
+
+[data-theme="light"] .text-red {
+  background: none;
+  -webkit-text-fill-color: initial;
   color: var(--red);
+  filter: none;
 }
 
 .d-flex {
@@ -121,45 +133,129 @@
   flex-wrap: wrap;
 }
 
-.gap-1 { gap: 0.25rem; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-4 { gap: 1rem; }
-.gap-5 { gap: 1.25rem; }
+.gap-1 {
+  gap: 0.25rem;
+}
 
-.p-1 { padding: 0.25rem; }
-.p-2 { padding: 0.5rem; }
-.p-3 { padding: 0.75rem; }
-.p-4 { padding: 1rem; }
-.p-5 { padding: 1.25rem; }
+.gap-2 {
+  gap: 0.5rem;
+}
 
-.m-1 { margin: 0.25rem; }
-.m-2 { margin: 0.5rem; }
-.m-3 { margin: 0.75rem; }
-.m-4 { margin: 1rem; }
-.m-5 { margin: 1.25rem; }
+.gap-3 {
+  gap: 0.75rem;
+}
 
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 0.75rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-5 { margin-top: 1.25rem; }
+.gap-4 {
+  gap: 1rem;
+}
 
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 0.75rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-5 { margin-bottom: 1.25rem; }
+.gap-5 {
+  gap: 1.25rem;
+}
 
-.w-100 { width: 100%; }
-.h-100 { height: 100%; }
+.p-1 {
+  padding: 0.25rem;
+}
 
-.rounded { border-radius: var(--radius); }
-.rounded-sm { border-radius: var(--radius-sm); }
+.p-2 {
+  padding: 0.5rem;
+}
 
-.shadow { box-shadow: var(--shadow); }
+.p-3 {
+  padding: 0.75rem;
+}
 
-.transition { transition: all 0.3s ease; }
+.p-4 {
+  padding: 1rem;
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
+}
+
+.m-4 {
+  margin: 1rem;
+}
+
+.m-5 {
+  margin: 1.25rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.rounded {
+  border-radius: var(--radius);
+}
+
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.shadow {
+  box-shadow: var(--shadow);
+}
+
+.transition {
+  transition: all 0.3s ease;
+}
 
 /* ── SECTION STYLES ────────────────────────────────────────────── */
 section {
@@ -201,6 +297,7 @@ section {
     box-shadow: 0 0 5px 1px var(--red-glow, rgba(255, 0, 0, 0.2));
     transform: translate(-50%, -50%) scale(0.9);
   }
+
   100% {
     box-shadow: 0 0 20px 6px var(--red-glow, rgba(255, 0, 0, 0.6));
     transform: translate(-50%, -50%) scale(1.2);
@@ -211,16 +308,48 @@ section {
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
   color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   font-family: var(--font-code);
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 0, 0, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 0, 0, 0.15);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-eyebrow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  animation: shineEyebrow 4s ease-in-out infinite;
+}
+
+@keyframes shineEyebrow {
+  0% {
+    left: -100%;
+  }
+
+  20%,
+  100% {
+    left: 200%;
+  }
 }
 
 .section-eyebrow.light {
-  color: rgba(255, 255, 255, 0.7);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }

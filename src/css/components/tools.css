@@ -286,6 +286,16 @@
   color: #54c2ea;
 }
 
+.csharp-icon {
+  background: rgba(155, 79, 150, 0.15);
+  color: #9b4f96;
+}
+
+.dotnet-icon {
+  background: rgba(81, 43, 212, 0.15);
+  color: #512bd4;
+}
+
 .mysql-icon {
   background: rgba(0, 117, 143, 0.15);
   color: #00758f;
