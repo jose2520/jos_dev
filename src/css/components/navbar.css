@@ -684,9 +684,24 @@
   transition-delay: 0.3s;
 }
 
-/* ── RESPONSIVE DESIGN (MOBILE) ────────────────────────────────── */
-@media (max-width: 768px) {
+/* ── RESPONSIVE DESIGN (TABLET & MOBILE) ─────────────────────── */
+@media (max-width: 1150px) {
+  .nav-container {
+    gap: 1.2rem;
+  }
+  
+  .nav-links a {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
 
+  .btn-cv {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 992px) {
   .nav-links,
   .nav-actions {
     display: none;
@@ -698,15 +713,22 @@
 
   .navbar {
     width: calc(100% - 2rem);
-    max-width: 500px;
-    /* Don't get too wide on tablets */
-    padding: 0.5rem 1rem;
+    max-width: 600px;
+    padding: 0.5rem 1.2rem;
   }
 
   .nav-container {
     justify-content: space-between;
     width: 100%;
+    gap: 0;
   }
 
-  /* .mobile-menu doesn't need overriding, it takes 100% of .navbar's width via left:0, right:0 */
+  /* .mobile-menu takes 100% of .navbar's width via left:0, right:0 */
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    max-width: 100%;
+    padding: 0.5rem 1rem;
+  }
 }
