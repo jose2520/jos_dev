@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+
+<head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <meta name="description" content="404 - Página no encontrada" />
+     <title>404 - No Encontrado | Jose.dev</title>
+
+     <!-- La etiqueta base es vital para GitHub Pages, asegura que sin importar 
+               qué tan anidada sea la ruta inválida (ej. /carpeta/ruta/no-existe), 
+               los estilos y scripts relativos sigan cargando desde la raíz del sitio. -->
+     <base href="/" />
+
+     <link rel="icon" href="public/img/profile/favicon.png">
+
+     <!-- Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet" />
+
+     <!-- Icons -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+     <!-- Styles -->
+     <link rel="stylesheet" href="src/css/base/reset.css" />
+     <link rel="stylesheet" href="src/css/themes/variables.css" />
+     <link rel="stylesheet" href="src/css/base/base.css" />
+     <link rel="stylesheet" href="src/css/animations/animations.css" />
+     <link rel="stylesheet" href="src/css/animations/cursor.css" />
+     <link rel="stylesheet" href="src/css/components/404.css" />
+</head>
+
+<body>
+     <!-- Custom cursor elements -->
+     <div class="cursor" id="cursor"></div>
+     <div class="cursor-ring" id="cursor-ring"></div>
+
+     <!-- 404 Content -->
+     <div id="error-404" class="error-404-container">
+          <div class="error-404-content">
+               <div class="error-code-wrapper">
+                    <h1 class="error-code" data-text="404">404</h1>
+               </div>
+               <h2 class="error-title">Página no encontrada</h2>
+               <p class="error-message">
+                    Parece que te has perdido en el ciberespacio. La página que buscas no existe, ha cambiado de nombre
+                    o está temporalmente inaccesible.
+               </p>
+
+               <div class="error-actions">
+                    <a href="/" class="error-btn-primary">
+                         <i class="fas fa-home"></i> Volver al inicio
+                    </a>
+               </div>
+
+               <p class="error-footer">
+                    <span class="m-dot">✦</span> Jose.dev <span class="m-dot">✦</span>
+               </p>
+          </div>
+     </div>
+
+     <!-- Scripts -->
+     <script src="src/js/utils/cursor.js"></script>
+</body>
+
+</html>

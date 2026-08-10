@@ -4,51 +4,70 @@
     Purpose: Custom cursor styling — point and ring follow the mouse with animation.
    ================================================================ */
 
+/* Hide default cursor only on devices with a mouse/trackpad */
+@media (pointer: fine) {
+    *, *::before, *::after {
+        cursor: none !important;
+    }
+}
+
 .cursor {
-    width: 12px; height: 12px;
+    width: 10px; height: 10px;
     background: var(--red, #e8192c);
     border-radius: 50%;
     position: fixed;
     top: 0; left: 0;
     pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    z-index: 999999;
+    will-change: transform;
+    /* Removed 'transform' from transition so JS can control it smoothly via requestAnimationFrame */
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
 }
+
 .cursor-ring {
-    width: 36px; height: 36px;
+    width: 38px; height: 38px;
     border: 2px solid var(--red, #e8192c);
     border-radius: 50%;
     position: fixed;
     top: 0; left: 0;
     pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease;
-    opacity: 0.5;
+    z-index: 999998;
+    will-change: transform;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, backdrop-filter 0.3s ease;
+    opacity: 0.6;
 }
 
 .cursor.hover {
-    width: 20px;
-    height: 20px;
-    background: rgba(var(--red-rgb, 232, 25, 44), 0.7);
+    width: 6px;
+    height: 6px;
+    background-color: var(--red, #e8192c);
+    opacity: 0.5;
 }
 
 .cursor-ring.hover {
-    width: 56px;
-    height: 56px;
-    opacity: 0.8;
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+    background-color: rgba(var(--red-rgb, 232, 25, 44), 0.1);
+    border-color: rgba(var(--red-rgb, 232, 25, 44), 0.8);
+    backdrop-filter: blur(2px);
 }
 
 .cursor-glow {
     position: fixed;
+    top: 0; left: 0;
     pointer-events: none;
-    z-index: 9997;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(var(--red-rgb, 230, 57, 70), 0.08), transparent 70%);
+    z-index: 999997;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(var(--red-rgb, 232, 25, 44), 0.12), transparent 60%);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: left 0.12s ease, top 0.12s ease;
-    will-change: left, top;
+    will-change: transform;
+}
+
+/* Fallback for touch devices: explicitly hide custom cursors */
+@media (pointer: coarse), (pointer: none) {
+    .cursor, .cursor-ring, .cursor-glow {
+        display: none !important;
+    }
 }

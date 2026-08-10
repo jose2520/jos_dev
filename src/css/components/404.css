@@ -1,0 +1,152 @@
+/* ================================================================
+  File: 404.css
+  Purpose: Styles for the 404 error view/page.
+================================================================ */
+
+.error-404-container {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100vw;
+     height: 100vh;
+     background-color: var(--bg);
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+     /* Using a radial gradient similar to theme backgrounds */
+     background-image: radial-gradient(circle at center, var(--bg2) 0%, var(--bg) 100%);
+}
+
+.error-404-content {
+     text-align: center;
+     padding: 2rem;
+     max-width: 600px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     animation: fadeUp 0.8s ease-out forwards;
+}
+
+.error-code-wrapper {
+     position: relative;
+     margin-bottom: 1.5rem;
+}
+
+.error-code {
+     font-family: var(--font-code);
+     font-size: clamp(6rem, 20vw, 12rem);
+     font-weight: 700;
+     color: var(--text);
+     line-height: 1;
+     margin: 0;
+     position: relative;
+     text-shadow: 0 0 20px var(--red-glow);
+}
+
+.error-code::before,
+.error-code::after {
+     content: attr(data-text);
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: transparent;
+     opacity: 0.8;
+}
+
+.error-code::before {
+     left: 4px;
+     text-shadow: -2px 0 var(--red);
+     animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
+}
+
+.error-code::after {
+     left: -4px;
+     text-shadow: 2px 0 var(--red-dark);
+     animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.error-title {
+     font-family: var(--font-sans);
+     font-size: clamp(1.5rem, 4vw, 2.5rem);
+     font-weight: 600;
+     color: var(--text);
+     margin-bottom: 1rem;
+     letter-spacing: -0.02em;
+}
+
+.error-message {
+     font-family: var(--font-sans);
+     font-size: 1.1rem;
+     color: var(--text-muted);
+     line-height: 1.6;
+     margin-bottom: 2.5rem;
+     max-width: 80%;
+}
+
+.error-actions {
+     display: flex;
+     gap: 1rem;
+     justify-content: center;
+     margin-bottom: 3rem;
+}
+
+.error-btn-primary {
+     display: inline-flex;
+     align-items: center;
+     gap: 0.75rem;
+     padding: 1rem 2rem;
+     background-color: var(--red-soft);
+     color: var(--red);
+     border: 1px solid var(--red);
+     border-radius: var(--radius);
+     font-family: var(--font-sans);
+     font-weight: 500;
+     font-size: 1rem;
+     cursor: pointer;
+     text-decoration: none;
+     transition: all 0.3s ease;
+}
+
+.error-btn-primary:hover {
+     background-color: var(--red);
+     color: #fff;
+     box-shadow: 0 0 20px var(--red-glow);
+     transform: translateY(-2px);
+}
+
+.error-footer {
+     font-family: var(--font-code);
+     font-size: 0.85rem;
+     color: var(--text-faint);
+     letter-spacing: 2px;
+     text-transform: uppercase;
+}
+
+.error-footer .m-dot {
+     color: var(--red);
+     margin: 0 0.5rem;
+     font-size: 0.7rem;
+     animation: pulse 2s infinite ease-in-out;
+}
+
+/* Glitch Animations for the 404 */
+@keyframes glitch-anim-1 {
+     0% { clip-path: inset(20% 0 80% 0); }
+     20% { clip-path: inset(60% 0 10% 0); }
+     40% { clip-path: inset(40% 0 50% 0); }
+     60% { clip-path: inset(80% 0 5% 0); }
+     80% { clip-path: inset(10% 0 70% 0); }
+     100% { clip-path: inset(30% 0 20% 0); }
+}
+
+@keyframes glitch-anim-2 {
+     0% { clip-path: inset(10% 0 60% 0); }
+     20% { clip-path: inset(80% 0 5% 0); }
+     40% { clip-path: inset(30% 0 20% 0); }
+     60% { clip-path: inset(70% 0 10% 0); }
+     80% { clip-path: inset(20% 0 50% 0); }
+     100% { clip-path: inset(50% 0 30% 0); }
+}
