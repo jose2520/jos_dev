@@ -79,7 +79,9 @@ jose.dev/ 🎯 Root
 │   │   │   ├── 🛠️  tools.css  (Tools & tech)
 │   │   │   ├── 📂 projects.css (Projects section)
 │   │   │   ├── 💬 contact.css (Contact section)
-│   │   │   └── 🔗 footer.css  (Footer layout)
+│   │   │   ├── 🔗 footer.css  (Footer layout)
+│   │   │   ├── ⚠️ maintenance-modal.css (Maintenance modal styles)
+│   │   │   └── 🚫 404.css     (404 page styles)
 │   │   ├── ⚡ utilities/      (Utility classes)
 │   │   │   ├── 🎯 utilities.css
 │   │   │   └── ✨ effects.css
@@ -89,14 +91,15 @@ jose.dev/ 🎯 Root
 │   │       └── 📱 responsive.css
 │   │
 │   ├── 📄 view/               (HTML modules - loaded dynamically)
-│   │   ├── 🔺 mod-hero.html
-│   │   ├── 👤 mod-about.html
-│   │   ├── 🛠️  mod-tools.html
-│   │   ├── 📂 mod-projects.html
-│   │   ├── 💬 mod-contact.html
-│   │   ├── 📱 mod-nav.html
-│   │   ├── 🔗 mod-footer.html
-│   │   └── 🎨 mod-background.html
+│   │   ├── ⚠️ mod-maintenance.html (Maintenance modal view)
+│   │   ├── 🎨 mod-background.html (Background canvas & particles)
+│   │   ├── 📱 mod-nav.html    (Navigation bar)
+│   │   ├── 🔺 mod-hero.html   (Hero section)
+│   │   ├── 👤 mod-about.html  (About me section)
+│   │   ├── 🛠️  mod-tools.html  (Tools & tech section)
+│   │   ├── 📂 mod-projects.html (Projects section)
+│   │   ├── 💬 mod-contact.html (Contact section)
+│   │   └── 🔗 mod-footer.html (Footer view)
 │   │
 │   └── ⚙️  js/                (JavaScript logic)
 │       ├── 🔥 core/           (Core functionality)
@@ -108,7 +111,9 @@ jose.dev/ 🎯 Root
 │       │   ├── ✨ decorations.js (Floating particles)
 │       │   ├── 🔄 smooth-nav.js (Smooth scrolling)
 │       │   ├── 🌙 theme.js    (Dark/Light mode)
-│       │   └── ⌨️  typing-effect.js (Typing effect)
+│       │   ├── ⌨️  typing-effect.js (Typing effect)
+│       │   ├── 📜 scroll-reveal.js (Scroll animations)
+│       │   └── ⚠️ maintenance.js (Maintenance modal logic)
 │       └── 🔧 utils/          (Utilities)
 │           ├── 🎪 cursor.js   (Cursor styling)
 │           └── 📝 forms.js    (Form validation)
@@ -136,40 +141,43 @@ This project uses a **clean modular architecture** to keep code easy to maintain
 
 ## 🧩 HTML modules
 
-The `index.html` file is structured as **7 clearly separated modules** with block comments:
+The `index.html` file is structured as **9 clearly separated modules** with block comments:
 
 ```
-MODULE 0 · Global background layers
+MODULE 0 · Maintenance notification modal
+  └── Mini canvas node grid + floating code particles + dismiss/enter
+
+MODULE 1 · Global background layers
   └── Node grid canvas + floating code particles
 
-MODULE 1 · Main navigation
+MODULE 2 · Main navigation
   ├── Desktop bar (logo · links · resume link · theme toggle)
   └── Mobile dropdown menu
 
-MODULE 2 · Hero — Introduction
-  ├── Sub-module 2.1 → Text, glitch title, buttons, statistics
-  └── Sub-module 2.2 → Photo with orbits, badge, floating snippets
+MODULE 3 · Hero — Introduction
+  ├── Sub-module 3.1 → Text, glitch title, buttons, statistics
+  └── Sub-module 3.2 → Photo with orbits, badge, floating snippets
 
-MODULE 3 · About me — Behind the keyboard
-  ├── Sub-module 3.1 → Side title + specialty chips
-  └── Sub-module 3.2 → Story card with animated corners
+MODULE 4 · About me — Behind the keyboard
+  ├── Sub-module 4.1 → Side title + specialty chips
+  └── Sub-module 4.2 → Story card with animated corners
 
-MODULE 4 · Tools — My toy box
-  ├── Sub-module 4.1 → Languages (JS, Python, PHP, TS, HTML/CSS, SQL)
-  ├── Sub-module 4.2 → Technologies (React, Node, Vue, Angular…)
-  └── Sub-module 4.3 → Databases (MySQL, MongoDB, Firebase…)
+MODULE 5 · Tools — My toy box
+  ├── Sub-module 5.1 → Languages (JS, Python, PHP, TS, HTML/CSS, SQL)
+  ├── Sub-module 5.2 → Technologies (React, Node, Vue, Angular…)
+  └── Sub-module 5.3 → Databases (MySQL, MongoDB, Firebase…)
 
-MODULE 5 · Projects — My adventures
-  ├── Sub-module 5.1 → El Mercadito Digital
-  ├── Sub-module 5.2 → Ventana al Cielo
-  ├── Sub-module 5.3 → Dashboard Cosmos
-  └── Sub-module 5.4 → ChatBot AI
+MODULE 6 · Projects — My adventures
+  ├── Sub-module 6.1 → El Mercadito Digital
+  ├── Sub-module 6.2 → Ventana al Cielo
+  ├── Sub-module 6.3 → Dashboard Cosmos
+  └── Sub-module 6.4 → ChatBot AI
 
-MODULE 6 · Contact — Shall we build something epic together?
-  ├── Sub-module 6.1 → Contact info (email, location, social links)
-  └── Sub-module 6.2 → Contact form with validation
+MODULE 7 · Contact — Shall we build something epic together?
+  ├── Sub-module 7.1 → Contact info (email, location, social links)
+  └── Sub-module 7.2 → Contact form with validation
 
-MODULE 7 · Footer
+MODULE 8 · Footer
   └── Logo · Copyright · social links
 ```
 
@@ -252,9 +260,9 @@ To verify that all files are present:
 
 ```bash
 # Count files by type
-find src/css -name "*.css" | wc -l    # Should be 15
-find src/js -name "*.js" | wc -l     # Should be 10
-find src/view -name "*.html" | wc -l # Should be 8
+find src/css -name "*.css" | wc -l    # Should be 17
+find src/js -name "*.js" | wc -l     # Should be 12
+find src/view -name "*.html" | wc -l # Should be 9
 
 # List full source structure
 find src/ -type f | sort

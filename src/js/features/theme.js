@@ -9,8 +9,8 @@
 
   // Wait for modules to be loaded
   document.addEventListener("modulesLoaded", () => {
-  const html = document.documentElement;
-  const themeToggles = document.querySelectorAll(".theme-toggle");
+    const html = document.documentElement;
+    const themeToggles = document.querySelectorAll(".theme-toggle");
 
     /**
      * Update dynamic images based on theme
@@ -18,7 +18,7 @@
     function updateImages(theme) {
       const profileImg = document.querySelector('.hero-photo-frame img');
       if (profileImg) {
-        profileImg.src = theme === "dark" ? "public/img/profile/dark.png" : "public/img/profile/while.png";
+        profileImg.src = theme === "dark" ? "public/img/profile/dark.webp" : "public/img/profile/while.webp";
       }
     }
 
@@ -44,7 +44,7 @@
           html.setAttribute("data-theme", next);
           localStorage.setItem("jd-theme", next);
           updateImages(next);
-          
+
           setTimeout(() => {
             html.classList.remove("theme-transitioning");
           }, 300);
