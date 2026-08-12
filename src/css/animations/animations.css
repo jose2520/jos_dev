@@ -139,8 +139,8 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  background: var(--border);
-  border: 1.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -152,7 +152,19 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--r, 170px))) rotate(calc(-1 * var(--a)));
   animation: counter-rotate var(--speed, 20s) linear infinite;
-  transition: transform 0.3s, box-shadow 0.3s ease;
+  transition: transform 0.3s, box-shadow 0.3s ease, background 0.3s, border-color 0.3s;
+}
+
+[data-theme="light"] .orbit-icon {
+  background: rgba(124, 92, 255, 0.08);
+  border: 1.5px solid rgba(124, 92, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(124, 92, 255, 0.12);
+}
+
+.orbit-icon:hover {
+  transform: translate(-50%, -50%) rotate(var(--a)) translateX(calc(var(--r, 170px))) rotate(calc(-1 * var(--a))) scale(1.15);
+  box-shadow: 0 0 20px var(--red-glow);
+  border-color: var(--red);
 }
 
 @keyframes counter-rotate {
