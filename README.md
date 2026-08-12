@@ -3,10 +3,9 @@
 > _"I don't just write code, I tell stories through vibrant interfaces."_
 
 Personal portfolio of **Jose Diaz**, Junior Developer & Imagineer.
-Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no dependencies.
+Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no dependencies, no build step.
 
-**Organized modular architecture** with clear separation between styles, logic, and content for maximum maintainability and scalability.
-
+**Organized modular architecture** with clear separation between styles, logic, and dynamic HTML components for maximum maintainability and scalability.
 
 ---
 
@@ -22,6 +21,7 @@ Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no
 - [How to run](#-how-to-run)
 - [Development](#-development)
 - [Customization](#-customization)
+- [EmailJS Integration](#-emailjs-integration)
 - [Author](#-author)
 
 ---
@@ -29,13 +29,14 @@ Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no
 ## 🌐 Live Demo
 
 [View Live Site](https://jose2520.github.io/)
+
 ---
 
 ## 🖼 Preview
 
 |                 Dark mode                 |               Light mode                |
 | :-----------------------------------------: | :-------------------------------------: |
-| Black background with red accents and animations | White background with lilac accents and the same animations |
+| Black background with red accents and canvas node grid | White background with lilac accents and consistent theme styling |
 
 ---
 
@@ -43,14 +44,14 @@ Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no
 
 | Layer        | Technology                                    | Details                                      |
 | ------------ | --------------------------------------------- | --------------------------------------------- |
-| Structure    | Semantic HTML5                                | Modules organized in separate files          |
-| Styling      | Pure CSS3 (variables, animations, grid, flex) | Modular architecture in 5 layers (base/themes/components/utilities/animations) |
-| Logic        | Vanilla JavaScript ES6+                        | Modular code in 3 layers (core/features/utils) |
-| Icons        | Font Awesome                                  | v6.5.1                                       |
-| Fonts        | Space Grotesk + Fira Code                      | Google Fonts                                 |
-| Dev server   | Live Server / npx serve                        | Local deployment without build tools         |
+| Structure    | Semantic HTML5                                | 9 dynamic modules loaded via asynchronous `fetch` |
+| Styling      | Pure CSS3 (variables, animations, grid, flex) | Modular architecture across 17 files in 5 layers |
+| Logic        | Vanilla JavaScript ES6+                        | Modular code across 12 files in 3 layers (core/features/utils) |
+| Icons        | Font Awesome 6.5.1 + Devicon + Simple Icons    | Vector iconography for tech stack and UI      |
+| Fonts        | Space Grotesk + Fira Code + Outfit + Orbitron  | Google Fonts for typography & futuristic aesthetics |
+| Dev server   | Live Server / npx serve / Python HTTP Server   | Local deployment without complex build toolchains |
 
-> ⚠️ **No React · No Tailwind · No jQuery · No build step.**
+> ⚠️ **No React · No Tailwind · No jQuery · No Webpack/Vite build required.**
 
 ---
 
@@ -58,12 +59,14 @@ Built 100% with **HTML · pure CSS · vanilla JavaScript** — no frameworks, no
 
 ```
 jose.dev/ 🎯 Root
-├── 🌐 index.html              (Main entry point)
+├── 🌐 index.html              (Main entry point & module container)
+├── 🧪 test-orbit3.html        (Experimental orbit/animation test page)
 ├── 📖 README.md               (Project documentation)
 ├── 📦 public/                 (Static public assets)
 │   └── 🖼️  img/
-│       ├── 👤 profile/        (Profile images)
-│       └── 🎨 projects/       (Project images)
+│       ├── 👤 profile/        (Profile images, favicon, avatars)
+│       ├── 🎨 proyect/        (Project screenshots)
+│       └── 📋 borrador/       (Drafts & 404 templates)
 │
 ├── 🎨 src/                    (Source code)
 │   ├── 🎭 css/
@@ -73,301 +76,193 @@ jose.dev/ 🎯 Root
 │   │   ├── 🌈 themes/         (CSS variables - colors and themes)
 │   │   │   └── 🎨 variables.css
 │   │   ├── 🧩 components/     (Section-specific styles)
-│   │   │   ├── 📱 navbar.css  (Navigation)
-│   │   │   ├── ✨ hero.css    (Hero section)
-│   │   │   ├── 👋 about.css   (About section)
-│   │   │   ├── 🛠️  tools.css  (Tools & tech)
-│   │   │   ├── 📂 projects.css (Projects section)
-│   │   │   ├── 💬 contact.css (Contact section)
-│   │   │   └── 🔗 footer.css  (Footer layout)
+│   │   │   ├── 📱 navbar.css
+│   │   │   ├── ✨ hero.css
+│   │   │   ├── 👋 about.css
+│   │   │   ├── 🛠️  tools.css
+│   │   │   ├── 📂 projects.css
+│   │   │   ├── 💬 contact.css
+│   │   │   ├── 🔗 footer.css
+│   │   │   ├── 🚧 maintenance-modal.css
+│   │   │   └── ❌ 404.css
 │   │   ├── ⚡ utilities/      (Utility classes)
 │   │   │   ├── 🎯 utilities.css
 │   │   │   └── ✨ effects.css
-│   │   └── 🎬 animations/     (Animations and responsive)
+│   │   └── 🎬 animations/     (Animations and responsive design)
 │   │       ├── 🌊 animations.css
 │   │       ├── 🎪 cursor.css
 │   │       └── 📱 responsive.css
 │   │
-│   ├── 📄 view/               (HTML modules - loaded dynamically)
-│   │   ├── 🔺 mod-hero.html
-│   │   ├── 👤 mod-about.html
-│   │   ├── 🛠️  mod-tools.html
-│   │   ├── 📂 mod-projects.html
-│   │   ├── 💬 mod-contact.html
-│   │   ├── 📱 mod-nav.html
-│   │   ├── 🔗 mod-footer.html
-│   │   └── 🎨 mod-background.html
+│   ├── 📄 view/               (HTML modules - loaded dynamically via fetch)
+│   │   ├── 🚧 mod-maintenance.html (Maintenance overlay modal)
+│   │   ├── 🌐 mod-background.html  (Canvas node grid & particles)
+│   │   ├── 📱 mod-nav.html         (Navbar & mobile dropdown)
+│   │   ├── 🔺 mod-hero.html        (Hero section & avatars)
+│   │   ├── 👤 mod-about.html       (About me story & traits)
+│   │   ├── 🛠️  mod-tools.html      (Tech stack & toy box)
+│   │   ├── 📂 mod-projects.html    (Featured projects showcase)
+│   │   ├── 💬 mod-contact.html     (Contact info & validated form)
+│   │   └── 🔗 mod-footer.html      (Footer layout & social links)
 │   │
-│   └── ⚙️  js/                (JavaScript logic)
+│   └── ⚙️  js/                (JavaScript modular logic)
 │       ├── 🔥 core/           (Core functionality)
-│       │   ├── 🎯 core.js     (Main initialization)
+│       │   ├── 🎯 core.js     (Scroll reveal & stat counters)
 │       │   ├── 🖱️  interactions.js (User event handlers)
-│       │   └── 🧩 modules.js  (Module loader)
+│       │   └── 🧩 modules.js  (Dynamic module loader via fetch)
 │       ├── 🎪 features/       (Feature-specific logic)
-│       │   ├── 🎨 canvas.js   (Canvas background - node grid)
+│       │   ├── 🎨 canvas.js   (Node grid canvas background)
 │       │   ├── ✨ decorations.js (Floating particles)
-│       │   ├── 🔄 smooth-nav.js (Smooth scrolling)
-│       │   ├── 🌙 theme.js    (Dark/Light mode)
-│       │   └── ⌨️  typing-effect.js (Typing effect)
-│       └── 🔧 utils/          (Utilities)
-│           ├── 🎪 cursor.js   (Cursor styling)
-│           └── 📝 forms.js    (Form validation)
+│       │   ├── 🚧 maintenance.js (Maintenance modal controller)
+│       │   ├── 🔄 smooth-nav.js (Smooth scrolling & section active states)
+│       │   ├── 🌙 theme.js    (Dark/Light mode switcher with localStorage)
+│       │   └── ⌨️  typing-effect.js (Dynamic typing effect)
+│       └── 🔧 utils/          (Utilities & helpers)
+│           ├── 🎪 cursor.js   (Custom cursor ring & glow)
+│           └── 📝 forms.js    (Contact form validation & submission)
 ```
 
 ### 🏗 Architecture overview
 
-This project uses a **clean modular architecture** to keep code easy to maintain and extend:
+- **CSS organized in 5 distinct layers (17 files):**
+  - `base/` → Reset and base typography/body settings.
+  - `themes/` → CSS custom properties (`--bg`, `--text`, `--accent`, etc.) supporting dark/light switching.
+  - `components/` → Isolated styles for each modular section (Navbar, Hero, About, Tools, Projects, Contact, Footer, Maintenance modal, 404).
+  - `utilities/` → Helper classes and visual effects.
+  - `animations/` → Keyframes, custom cursor animations, and media queries for responsiveness.
 
-- **CSS organized in 5 layers:**
-  - `base/` → reset and base styles for HTML/body
-  - `themes/` → color variables and themes
-  - `components/` → section-specific styling
-  - `utilities/` → utility classes and effects
-  - `animations/` → animations and responsive styles
+- **JavaScript organized in 3 layers (12 files):**
+  - `core/` → Core initializations, IntersectionObserver scroll reveals, animated statistics counters, and dynamic HTML module injection.
+  - `features/` → Canvas background animations, floating particle decorations, maintenance modal triggers, smooth navigation, dark/light mode state, and typing effects.
+  - `utils/` → Custom cursor tracking and interactive form validation.
 
-- **JavaScript organized in 3 layers:**
-  - `core/` → core functionality (scroll, modules, interactions)
-  - `features/` → specific features (canvas, theme, navigation)
-  - `utils/` → utilities (forms, cursor)
-
-- **HTML modular:** modules are stored in `src/view/` for direct fetch injection.
+- **Dynamic Modular HTML:**
+  - Components are stored in `src/view/` and injected asynchronously by `modules.js` in strict priority order (Maintenance → Background → Navbar → Hero → About → Tools → Projects → Contact → Footer).
 
 ---
 
 ## 🧩 HTML modules
 
-The `index.html` file is structured as **7 clearly separated modules** with block comments:
+The application is structured around **9 dynamically injected modules**:
 
-```
-MODULE 0 · Global background layers
-  └── Node grid canvas + floating code particles
-
-MODULE 1 · Main navigation
-  ├── Desktop bar (logo · links · resume link · theme toggle)
-  └── Mobile dropdown menu
-
-MODULE 2 · Hero — Introduction
-  ├── Sub-module 2.1 → Text, glitch title, buttons, statistics
-  └── Sub-module 2.2 → Photo with orbits, badge, floating snippets
-
-MODULE 3 · About me — Behind the keyboard
-  ├── Sub-module 3.1 → Side title + specialty chips
-  └── Sub-module 3.2 → Story card with animated corners
-
-MODULE 4 · Tools — My toy box
-  ├── Sub-module 4.1 → Languages (JS, Python, PHP, TS, HTML/CSS, SQL)
-  ├── Sub-module 4.2 → Technologies (React, Node, Vue, Angular…)
-  └── Sub-module 4.3 → Databases (MySQL, MongoDB, Firebase…)
-
-MODULE 5 · Projects — My adventures
-  ├── Sub-module 5.1 → El Mercadito Digital
-  ├── Sub-module 5.2 → Ventana al Cielo
-  ├── Sub-module 5.3 → Dashboard Cosmos
-  └── Sub-module 5.4 → ChatBot AI
-
-MODULE 6 · Contact — Shall we build something epic together?
-  ├── Sub-module 6.1 → Contact info (email, location, social links)
-  └── Sub-module 6.2 → Contact form with validation
-
-MODULE 7 · Footer
-  └── Logo · Copyright · social links
-```
+1. **Maintenance Modal (`mod-maintenance.html`)** — Initial greeting/renovation overlay with interactive canvas and dismiss trigger.
+2. **Background Layers (`mod-background.html`)** — Global interactive node grid canvas and floating code particles.
+3. **Navigation Bar (`mod-nav.html`)** — Desktop navigation bar and mobile hamburger dropdown menu with theme toggle.
+4. **Hero Section (`mod-hero.html`)** — Introduction, glitch typography, call-to-action buttons, animated statistics, and orbital avatar badge.
+5. **About Section (`mod-about.html`)** — Personal story, background, and specialty trait chips with animated borders.
+6. **Tools Section (`mod-tools.html`)** — Categorized technical stack (Languages, Frameworks, Databases, Tools).
+7. **Projects Section (`mod-projects.html`)** — Feature cards showcasing real-world projects with interactive tilt and links.
+8. **Contact Section (`mod-contact.html`)** — Contact channels and fully validated contact form.
+9. **Footer (`mod-footer.html`)** — Copyright notices, branding, and social links.
 
 ---
 
 ## ✨ Features
 
-### Artistic animations
+### Artistic & Interactive Animations
+- **Canvas Node Grid** — Dynamic interconnected particle network rendered on HTML5 canvas.
+- **Floating Particles** — Code snippet particles drifting across the background.
+- **Glitch Effect** — Cyberpunk flickering title effect on load/hover.
+- **Orbit Rings & Shimmer** — Rotating tech orbit around the avatar and conic gradient glowing borders.
+- **Scroll Reveal** — Staggered element entrance using `IntersectionObserver`.
+- **3D Tilt Cards** — Interactive mouse-move tilt effect on project cards.
+- **Custom Cursor** — Smooth glowing dual-ring cursor tracking pointer movement.
+- **Typing Effect** — Real-time typing and deleting text animation.
+- **Animated Counters** — Statistics counting up dynamically upon viewport intersection.
 
-- **Canvas background** — node grid with connected code symbols
-- **Floating particles** — code snippet particles rise across the screen
-- **Glitch effect** — title flickers during load/hover
-- **Orbit rings** — technology icons rotate around the photo
-- **Animated border** — conic gradient ring around the hero image
-- **Floating snippets** — `<div>`, `const dev`, `() => {}` drift in CSS
-- **Binary strip** — moving "HELLO WORLD" binary strip
-- **Scroll reveal** — elements animate into view with IntersectionObserver
-- **Tilt cards** — 3D tilt on project cards when mouse moves
-- **Cursor glow** — glowing pointer ring follows the cursor
-- **Typing effect** — label types and erases in the About section
-- **Animated counters** — stats count up when visible
-- **Shimmer line** — shine effect on section separators
+### Theme Management
+- Real-time **Dark / Light mode** toggle (☀️ / 🌙) via navbar.
+- Dynamic swapping of CSS variables using `[data-theme]` attribute.
+- Persistent user choice saved in browser `localStorage`.
 
-### Dark / light mode
-
-- Navbar theme toggle (☀️ / 🌙)
-- CSS variables (`--bg`, `--text`, `--card`, etc.) change using `[data-theme]`
-- User preference saved in `localStorage`
-
-### Accessibility
-
-- `aria-label`, `role`, and `aria-hidden` on modules and buttons
-- `aria-live` for the form success message
-- `aria-expanded` for the mobile hamburger menu
-- Semantic markup with `<article>`, `<header>`, `<footer>`, `<nav>` elements
-
-### Performance and architecture
-
-- **Smart module loading** — HTML modules are loaded dynamically with fetch
-- **Optimized CSS** — theme variables and layered architecture
-- **Efficient JavaScript** — IntersectionObserver for scroll animations and sequential loading
-- **No external dependencies** — fully vanilla, no heavyweight frameworks
-- **Cache-aware loading** — cache control headers used for critical modules
-- **Separation of concerns** — styles, scripts, and content are clearly separated
+### Accessibility & Semantics
+- Semantic HTML5 landmark elements (`<header>`, `<main>`, `<section>`, `<nav>`, `<footer>`).
+- Proper ARIA attributes (`aria-label`, `aria-modal`, `aria-expanded`, `aria-live`).
 
 ---
 
 ## ▶️ How to run
 
 ### Option 1 — Live Server (VS Code) ⭐ Recommended
+1. Install the **Live Server** extension (`ritwickdey.liveserver`) in VS Code.
+2. Right-click `index.html` → **Open with Live Server**.
+3. Visit `http://127.0.0.1:5500`.
 
-1. Install the **Live Server** extension (`ritwickdey.liveserver`)
-2. Right-click `index.html` → **Open with Live Server**
-3. Visit `http://127.0.0.1:5500`
-
-### Option 2 — npx serve
-
+### Option 2 — Node.js serve
 ```bash
 npx serve . -l 3000
 # Open http://localhost:3000
 ```
 
-### Option 3 — Python
-
+### Option 3 — Python HTTP Server
 ```bash
 python3 -m http.server 8080
 # Open http://localhost:8080
 ```
 
-### Option 4 — Open directly
-Double-click `index.html` — works without a server (does not use fetch/ES modules).
+### Option 4 — Direct File Opening
+Double-click `index.html` to open directly in your web browser (note: dynamic module fetching via `fetch()` may be restricted by local CORS policies in some browsers without a local server).
 
 ---
 
 ## 🛠️ Development
 
-### Verify project structure
-
-To verify that all files are present:
-
+### File Count Verification
 ```bash
-# Count files by type
-find src/css -name "*.css" | wc -l    # Should be 15
-find src/js -name "*.js" | wc -l     # Should be 10
-find src/view -name "*.html" | wc -l # Should be 8
-
-# List full source structure
-find src/ -type f | sort
+# Count source files
+find src/css -name "*.css" | wc -l    # Expected: 17
+find src/js -name "*.js" | wc -l     # Expected: 12
+find src/view -name "*.html" | wc -l # Expected: 9
 ```
 
-### Useful commands
-
+### Useful Development Commands
 ```bash
-# Start a development server
+# Start local Python server
 python3 -m http.server 8000
 
-# Verify files are accessible
+# Test availability
 curl -I http://localhost:8000/index.html
-
-# Find duplicated JS/CSS file names
-find . -name "*.js" -o -name "*.css" | sort | uniq -d
 ```
 
 ---
 
 ## 🎨 Customization
 
-### Change colors
-
-In `src/css/themes/variables.css`, update the CSS variables:
-
+### Updating Theme Colors
+Edit CSS variables in `src/css/themes/variables.css`:
 ```css
 :root {
-  --red: #e63946; /* ← main accent color */
-  --red-dark: #c1121f; /* ← button hover color */
-  --bg: #0b0b0f; /* ← background color */
-  --text: #f0f0f8; /* ← text color */
+  --red: #e63946;       /* Primary accent */
+  --red-dark: #c1121f;  /* Accent hover / active */
+  --bg: #0b0b0f;        /* Background color */
+  --text: #f0f0f8;      /* Primary text color */
 }
 ```
 
-### Add a new section
-
-1. **Create a CSS file** at `src/css/components/new-section.css`
-2. **Create an HTML module** at `src/view/mod-new-section.html`
-3. **Add JS functionality** at `src/js/features/new-feature.js`
-4. **Update `index.html`** with the new links
-5. **Import the module in `modules.js`** with the appropriate priority
-
-### Update personal content
-
-Edit directly in the HTML modules and `index.html`:
-
-- **Name** → `data-text="Jose Diaz"` and the `<span class="hero-name">` text
-- **Description** → `<p class="hero-desc">`
-- **Stats** → `data-count="20"`, `data-count="3"`, `data-count="10"`
-- **Email** → `href="mailto:..."` in the contact module
-- **Projects** → Module 5, sub-modules 5.1 – 5.4
-- **Tools** → Module 4, sub-modules 4.1 – 4.3
-
-### Add a real photo
-
-Replace the avatar in Module 2.2:
-
-```html
-<!-- Change this: -->
-<div class="hero-avatar">
-  <i class="fas fa-user-astronaut"></i>
-</div>
-
-<!-- To this: -->
-<div class="hero-avatar">
-  <img src="public/img/photo.jpg" alt="Jose Diaz" />
-</div>
-```
-
-And add CSS inside `.hero-avatar`:
-
-```css
-.hero-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-```
+### Adding a New Section
+1. Create stylesheet at `src/css/components/new-section.css` and link it in `index.html`.
+2. Create HTML module at `src/view/mod-new-section.html`.
+3. Register the module in `src/js/core/modules.js` with appropriate priority.
+4. Add corresponding container `<div id="mod-new-section"></div>` in `index.html`.
 
 ---
 
-## 📬 Send form by email (EmailJS)
+## 📬 Contact Form & EmailJS
 
-If you want contact form submissions to arrive by email without a backend, use EmailJS.
-
-Quick steps:
-
-1. Sign up at https://www.emailjs.com/ and verify your email.
-2. Create a service (for example: gmail) and copy the Service ID.
-3. Create a template (e.g. `contact_form`) and use variables like `name`, `reply_to`, `message`.
-4. Copy your User ID from the dashboard.
-5. In this repo:
-   - Confirm `index.html` loads the SDK script, if needed.
-   - Open `src/js/forms.js` and replace the placeholders with your EmailJS credentials.
-
-Template notes:
-
-- Make sure the EmailJS template contains the variables used by the script (`name`, `reply_to`, `message`) or adjust the template parameters accordingly.
-- EmailJS offers a free plan with reasonable limits for personal forms.
-
-If you prefer another service (Formspree, Netlify Forms, your own backend, or a serverless function), I can help adapt the code.
+The contact form in `src/js/utils/forms.js` can be connected to [EmailJS](https://www.emailjs.com/) for serverless form submissions:
+1. Create a free EmailJS account and service (e.g., Gmail).
+2. Create a notification template with variables (`name`, `reply_to`, `message`).
+3. Update credentials and IDs in `src/js/utils/forms.js`.
 
 ---
 
 ## 👤 Author
 
-**Jose Diaz**
+**Jose Diaz** — Junior Developer & Imagineer
 
-- 📧 josedelcarmen_diaz@outlook.com
-- 📍 Barranquilla, Colombia 🇨🇴
-- 💼 [LinkedIn](https://www.linkedin.com/in/jose-de-carmen-d-901b39a4/)
-- 🐙 [GitHub](https://github.com/jose2520)
+- 📧 **Email:** josedelcarmen_diaz@outlook.com
+- 📍 **Location:** Barranquilla, Colombia 🇨🇴
+- 💼 **LinkedIn:** [jose-de-carmen-d-901b39a4](https://www.linkedin.com/in/jose-de-carmen-d-901b39a4/)
+- 🐙 **GitHub:** [@jose2520](https://github.com/jose2520)
 
 ---
 
