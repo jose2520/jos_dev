@@ -29,6 +29,7 @@
 
   .hero-image-wrap {
     height: 360px;
+    margin-top: 2rem;
   }
 
   .ring1 {
@@ -50,8 +51,12 @@
   }
 
   .hero-photo-frame {
-    width: 240px;
-    height: 240px;
+    width: 250px;
+    height: 320px;
+  }
+
+  .hero-photo-frame img {
+    transform: translateY(-30px);
   }
 
   .hero-avatar {
@@ -84,9 +89,23 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
+  /* Responsive Scroll Reveal */
+  .reveal {
+    transform: perspective(2000px) rotateX(30deg) translateY(60px) scale(0.95);
+  }
+
+  .reveal.hidden-up {
+    transform: perspective(2000px) rotateX(-30deg) translateY(-60px) scale(0.95);
+  }
 }
 
 @media (max-width: 600px) {
+  /* Prevent horizontal scroll from typing effect and animations */
+  html, body {
+    overflow-x: hidden;
+  }
+
   .footer-container {
     flex-direction: column;
     text-align: center;
@@ -98,5 +117,25 @@
 
   .hero-stats {
     gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .hero-tag {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+  }
+  
+  .hero-tag-text {
+    min-width: 0; /* Let it expand naturally or wrap on mobile to avoid overflow */
+    white-space: normal;
+  }
+
+  .hero-title {
+    font-size: 2.5rem; /* Ensure the text is not too large on tiny screens */
+  }
+
+  .hero-image-wrap {
+    transform: scale(0.85); /* Fit orbits properly */
+    margin-top: 0;
   }
 }

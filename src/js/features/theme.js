@@ -13,11 +13,22 @@
   const themeToggles = document.querySelectorAll(".theme-toggle");
 
     /**
+     * Update dynamic images based on theme
+     */
+    function updateImages(theme) {
+      const profileImg = document.querySelector('.hero-photo-frame img');
+      if (profileImg) {
+        profileImg.src = theme === "dark" ? "public/img/profile/dark.png" : "public/img/profile/while.png";
+      }
+    }
+
+    /**
      * Load saved theme from localStorage or default to 'dark'
      */
     function loadTheme() {
       const savedTheme = localStorage.getItem("jd-theme") || "dark";
       html.setAttribute("data-theme", savedTheme);
+      updateImages(savedTheme);
     }
 
     /**
@@ -27,10 +38,16 @@
       if (!themeToggles || themeToggles.length === 0) return;
       themeToggles.forEach(btn => {
         btn.addEventListener("click", () => {
+          html.classList.add("theme-transitioning");
           const current = html.getAttribute("data-theme");
           const next = current === "dark" ? "light" : "dark";
           html.setAttribute("data-theme", next);
           localStorage.setItem("jd-theme", next);
+          updateImages(next);
+          
+          setTimeout(() => {
+            html.classList.remove("theme-transitioning");
+          }, 300);
         });
       });
     }

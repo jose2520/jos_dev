@@ -52,8 +52,13 @@
   animation: tagPulse 3s ease infinite;
 }
 
-@keyframes tagPulse {
+.hero-tag-text {
+  display: inline-block;
+  min-width: 44ch; /* Reserves exact space for the typing text */
+  text-align: left;
+}
 
+@keyframes tagPulse {
   0%,
   100% {
     box-shadow: 0 0 0 0 var(--red-glow);
@@ -65,18 +70,47 @@
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--text);
   margin-bottom: 1.2rem;
 }
 
 .hero-name {
+  font-family: var(--font-cyber);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg,
+      var(--red) 0%,
+      var(--red-dark) 25%,
+      var(--hero-gradient-mid) 50%,
+      var(--red-dark) 75%,
+      var(--red) 100%);
+  background-size: 200% auto;
+  animation: cyberScan 2.5s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: var(--red);
-  display: block;
+  /* Fallback */
+  display: inline-block;
   position: relative;
   width: fit-content;
+  font-weight: 900;
+  text-shadow: 0 0 15px var(--red-soft);
+}
+
+@keyframes cyberScan {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
 }
 
 .hero-desc {
