@@ -5,9 +5,9 @@
 
 // Service and Template IDs (Obfuscated using Base64 so they aren't in plain sight)
 // If you need to change them, encode your new string in base64 (e.g., using btoa('new_key') in the console)
-const EMAILJS_SERVICE_ID = atob('c2VydmljZV8xMzI1'); // Decodes to: service_1325
-const EMAILJS_TEMPLATE_ID = atob('dGVtcGxhdGVfMTMyNQ=='); // Decodes to: template_1325
-const EMAILJS_PUBLIC_KEY = atob('QVF4aUR4c2F3R3VLcWNvRWc='); // Decodes to: AQxiDxsawGuKqcoEg
+const EMAILJS_SERVICE_ID = atob('c2VydmljZV8xMzI1');
+const EMAILJS_TEMPLATE_ID = atob('dGVtcGxhdGVfMTMyNQ==');
+const EMAILJS_PUBLIC_KEY = atob('QVF4aUR4c2F3R3VLcWNvRWc=');
 
 // Initialize the form only when the HTML module is in the DOM.
 // Modules are loaded asynchronously by modules.js which dispatches a `modulesLoaded` event.
