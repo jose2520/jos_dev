@@ -26,8 +26,8 @@
     if (!scrollObserver) {
       const observerOptions = {
         root: null,
-        rootMargin: '0px', // Trigger as soon as the element enters the viewport (no extra scroll needed)
-        threshold: 0 // Trigger as soon as the element crosses the margin
+        rootMargin: '30% 0px 90% 0px', // Trigger extremely early to ensure sections are visible almost instantly
+        threshold: 0
       };
 
       scrollObserver = new IntersectionObserver((entries) => {
@@ -41,7 +41,7 @@
           } else {
             // Element is scrolling out of view
             el.classList.remove('visible');
-            
+
             // Check direction: if bounding top is above viewport (y < 0) -> scrolled down past it
             // Use boundingClientRect.top for more reliable positioning cross-browser
             if (entry.boundingClientRect.top < 0) {
@@ -67,7 +67,7 @@
   // Setup immediately if elements exist, otherwise wait for dynamic load
   document.addEventListener('modulesLoaded', setupObserver);
   document.addEventListener('DOMContentLoaded', setupObserver);
-  
+
   // Call once immediately in case scripts are loaded after DOMContentLoaded
   setupObserver();
 })();

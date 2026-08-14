@@ -92,11 +92,11 @@
 
   /* Responsive Scroll Reveal */
   .reveal {
-    transform: perspective(2000px) rotateX(30deg) translateY(60px) scale(0.95);
+    transform: perspective(2000px) rotateX(30deg) translateY(30px) scale(0.95);
   }
 
   .reveal.hidden-up {
-    transform: perspective(2000px) rotateX(-30deg) translateY(-60px) scale(0.95);
+    transform: perspective(2000px) rotateX(-30deg) translateY(-30px) scale(0.95);
   }
 }
 
